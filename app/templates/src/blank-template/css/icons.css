@@ -1,0 +1,23 @@
+/* line 1, D:/work/weiyun-web/tmp_weiyun_web/src/sass/icons.sass */
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat; }
+
+/* line 5, D:/work/weiyun-web/tmp_weiyun_web/src/sass/icons.sass */
+.icon-filetype {
+  width: 29px;
+  height: 33px; }
+
+/* line 9, D:/work/weiyun-web/tmp_weiyun_web/src/sass/icons.sass */
+.icon-doc {
+  background-image: url(../img/slice/icon-doc.png); }
+
+/* line 12, D:/work/weiyun-web/tmp_weiyun_web/src/sass/icons.sass */
+.icon-folder {
+  width: 31px;
+  height: 26px;
+  background-image: url(../img/slice/icon-folder.png); }
+
+/* line 17, D:/work/weiyun-web/tmp_weiyun_web/src/sass/icons.sass */
+.icon-ppt {
+  background-image: url(../img/slice/icon-ppt.png); }

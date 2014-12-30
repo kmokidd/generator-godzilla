@@ -1,0 +1,134 @@
+/* @ Usage: 非1x屏幕下边框问题
+ * @ Origin: http://www.topcss.org/?p=769
+ * @ Modified by: Kidd He
+ * @ Contact: kiddhe # tencent.com*/
+/* @ Usage: Common/ global used variables
+ * @ Author: Kidd He
+ * @ Contact: kiddhe # tencent.com
+ */
+/* @ Usage: With prefix styles
+ * @ Author: Kidd He
+ * @ Contact: kiddhe # tencent.com
+ */
+/* @ Usage: Commons used classes
+ * @ Auther: Kidd He
+ * @ Contact: kiddhe # tencent.com
+ */
+/* @ Usage: Common/ global used variables
+ * @ Author: Kidd He
+ * @ Contact: kiddhe # tencent.com
+ */
+/* line 8, D:/work/weiyun-web/tmp_weiyun_web/src/sass/classes */
+.tBor:before, .bBor:after, .lBor:before, .rBor:after, .trblBor:after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  background: #cacccd; }
+
+/* line 10, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.tBor:before, .bBor:after {
+  left: 0;
+  right: 0; }
+  @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx), (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .tBor:before, .bBor:after {
+      -webkit-transform: scaleX(0.5);
+      -ms-transform: scaleX(0.5);
+      -o-transform: scaleX(0.5);
+      transform: scaleX(0.5); } }
+  @media (-webkit-device-pixel-ratio: 1.5) {
+    .tBor:before, .bBor:after {
+      -webkit-transform: scaleX(0.66667);
+      -ms-transform: scaleX(0.66667);
+      -o-transform: scaleX(0.66667);
+      transform: scaleX(0.66667); } }
+  @media (-webkit-device-pixel-ratio: 3) {
+    .tBor:before, .bBor:after {
+      -webkit-transform: scaleX(0.3333);
+      -ms-transform: scaleX(0.3333);
+      -o-transform: scaleX(0.3333);
+      transform: scaleX(0.3333); } }
+
+/* line 22, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.lBor:before, .rBor:after {
+  top: 0;
+  bottom: 0; }
+  @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx), (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .lBor:before, .rBor:after {
+      -webkit-transform: scaleY(0.5);
+      -ms-transform: scaleY(0.5);
+      -o-transform: scaleY(0.5);
+      transform: scaleY(0.5); } }
+  @media (-webkit-device-pixel-ratio: 1.5) {
+    .lBor:before, .rBor:after {
+      -webkit-transform: scaleY(0.66667);
+      -ms-transform: scaleY(0.66667);
+      -o-transform: scaleY(0.66667);
+      transform: scaleY(0.66667); } }
+  @media (-webkit-device-pixel-ratio: 3) {
+    .lBor:before, .rBor:after {
+      width: 300%;
+      height: 300%;
+      border-radius: 16px;
+      -webkit-transform: scaleY(0.3333);
+      -ms-transform: scaleY(0.3333);
+      -o-transform: scaleY(0.3333);
+      transform: scaleY(0.3333); } }
+
+/* line 36, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.tBor:before {
+  top: 0; }
+
+/* line 38, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.bBor:after {
+  bottom: 0; }
+
+/* line 41, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.lBor:before {
+  left: 0; }
+
+/* line 43, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.rBor:after {
+  right: 0; }
+
+/* line 46, D:/work/weiyun-web/tmp_weiyun_web/src/sass/component.sass */
+.trblBor:after {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #cacccd;
+  point-events: none; }
+  /* line 8, D:/work/weiyun-web/tmp_weiyun_web/src/sass/functions */
+  .trblBor:after -webkit-box-sizing:border-box -moz-box-sizing:border-box {
+    box-sizing: border-box; }
+  @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx), (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .trblBor:after {
+      width: 200%;
+      height: 200%;
+      border-radius: 8px;
+      -webkit-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      -o-transform: scale(0.5);
+      transform: scale(0.5); } }
+  @media (-webkit-device-pixel-ratio: 1.5) {
+    .trblBor:after {
+      width: 150%;
+      height: 150%;
+      -webkit-transform: scale(0.66667);
+      -ms-transform: scale(0.66667);
+      -o-transform: scale(0.66667);
+      transform: scale(0.66667); } }
+
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx), (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .tBor:before, .lBor:before, .trblBor:after {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0; } }
+
+@media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx), (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .bBor:after, .rBor:after {
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%; } }
