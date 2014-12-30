@@ -13,6 +13,8 @@ var mutuo = require("gulp-mutuo");//转化@2x图工具
 var sprite = require("gulp-spriter");//雪碧图工具
 var imageisux = require("gulp-imageisux")//智图压缩
 var ftp = require("gulp-iftp");//部署任务
+var sass = require("gulp-sass"); //sass2css
+var replace = require("gulp-replace");//replace img path
 
 //清理依赖环境
 gulp.task("clean",function(){
@@ -25,10 +27,21 @@ gulp.task("js",function(){
         .pipe(jshint())
         .pipe(jshint.reporter("jshint-stylish"))
         .pipe(concat("main.js"))
-        .pipe(rename("<%= projectName%>.js"))
+        .pipe(rename("tmp_weiyun_web.js"))
         .pipe(uglify())
         .pipe(gulp.dest("./debug/js"));
 })
+
+// sass to css
+gulp.task('sass', function(){
+  gulp.src(['./src/sass/component.sass', './src/sass/icons.sass'])
+      .pipe(sass({
+        errLogToConsole: true,
+        sourceComments : 'normal'
+      }))
+      .pipe(gulp.dest('./src/css'))
+})
+
 //处理@2x图片为@1x图片
 gulp.task("cover",function(){
   return gulp.src(["./src/img/*","./src/img/slice/*"])
@@ -37,35 +50,44 @@ gulp.task("cover",function(){
 //处理html
 gulp.task("html",function(){
   return gulp.src(["./src/*.html"])
-        .pipe(gulp.dest("./debug/"));
+        .pipe(replace("./dist/img/", "../../../imgcache.qq.com/vipstyle/nr/box/img/"))
+        .pipe(gulp.dest("../html_refactoring/h5/html"))
 })
 //处理css文件，合并雪碧图
 gulp.task("css",function(){
   return gulp.src("./src/css/*.css")
-         .pipe(concat("main.css"))
-         .pipe(rename("<%= projectName%>.css"))
+         .pipe(concat("weiyun-concat.css"))
          .pipe(sprite({
-           outname:"<%= projectName%>.png",
+           outname:"tmp_weiyun_web.png",
            inpath:"./src/img/slice",
-           outpath:"./debug/img/sprite"
+           outpath:"./dist/img/sprite"
          }))
          .pipe(cssmin({keepBreaks:false}))
-         .pipe(gulp.dest("./debug/css"));
+         .pipe(replace("./src/img/slice", "../../../imgcache.qq.com/vipstyle/nr/box/web/images/"))
+         // 同步到项目中
+         .pipe(gulp.dest("../imgcache.qq.com/vipstyle/nr/box/web/css"));
 })
-//压缩图片，同步图片到debug环境
+//压缩图片，同步图片到debug环境，同步到项目中
 gulp.task("img",function(){
+  console.log("in task img");
   return gulp.src(["./src/img/*.png","./src/img/*.jpg","!./src/img/sprite/*"])
-        .pipe(imageisux("../../debug/img"))
+        .pipe(imageisux("../../dist/img"))
+        .pipe(gulp.dest("../imgcache.qq.com/vipstyle/nr/box/web/images"));
 })
-//压缩雪碧图，同步到dist环境
+//压缩雪碧图，同步到dist环境，再同步到项目中
 gulp.task("sprite",function(){
-  return gulp.src(["./debug/img/sprite/*.png"])
+  console.log("in task sprite");
+  return gulp.src(["./dist/img/sprite/*.png"])
         .pipe(imageisux("../../../dist/img/sprite"))
+        .pipe(gulp.dest("../imgcache.qq.com/vipstyle/nr/box/web/images"));
 })
+
 //观察者模式
 gulp.task("watch",function(){
   gulp.watch("./src/js/*.js",["js"]);
-  gulp.watch("./src/css/*.css",["css"]);
+  gulp.watch("./src/sass/*.sass", ['sass']);
+  gulp.watch("./src/css/*.css",["css", "img", "sprite"]);
+  gulp.watch("./src/slice/*.png",["cover"]);
   gulp.watch("./src/*.html",["html"]);
 })
 
