@@ -15,6 +15,7 @@ var imageisux = require("gulp-imageisux")//智图压缩
 var ftp = require("gulp-iftp");//部署任务
 var sass = require("gulp-sass"); //sass2css
 var replace = require("gulp-replace");//replace img path
+var sourcemaps = require('gulp-sourcemaps'); //建立sourcemap 用于Sass
 
 //清理依赖环境
 gulp.task("clean",function(){
@@ -35,10 +36,12 @@ gulp.task("js",function(){
 // sass to css
 gulp.task('sass', function(){
   gulp.src(['./src/sass/component.sass', './src/sass/icons.sass'])
+      .pipe(sourcemaps.init())
       .pipe(sass({
         errLogToConsole: true,
         sourceComments : 'normal'
       }))
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest('./src/css'))
 })
 
